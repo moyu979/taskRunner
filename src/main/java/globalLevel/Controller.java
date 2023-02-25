@@ -26,6 +26,16 @@ public class Controller{
     }
 
     public void run(){};
+
+    public void addMachine(){
+        ;
+    }
+    public void deleteMachine(){
+        ;
+    }
+    public void getInfo(){
+        ;
+    }
     public void loadMechines() {
 
     }
