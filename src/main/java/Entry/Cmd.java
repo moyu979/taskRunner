@@ -20,9 +20,14 @@ public class Cmd extends Entry {
                     return null;
                 }case "newMechine" ->{
                     newMechine();
-                }case "run"->{
+                }case "newApp" -> {
+                    newApp();
+                }case "run"-> {
                     controller.run();
                     System.out.println("started");
+                }
+                case "getInfo"-> {
+                    getInfo();
                 }
                 case "gui" ->{
                     return new GUI(userFile,softFile);
@@ -31,9 +36,26 @@ public class Cmd extends Entry {
         }while(true);
     }
 
+    @Override
+    public String getMessage(String ask) {
+        System.out.println(ask);
+        Scanner scanner=new Scanner(System.in);
+        String answer=scanner.next();
+        return answer;
+    }
+    public String getInfo(){
+        String s=controller.getInfo();
+        System.out.println(s);
+        return s;
+    }
+    private void newApp() {
+    }
+
     private void newMechine() {
+        controller.addMachine();
     }
 
     private void quit() {
+        controller.quit();
     }
 }

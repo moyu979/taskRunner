@@ -25,8 +25,10 @@ public class Entry {
         return null;
     }
 
-    //回调函数，显示要显示的信息
-    public void getMessage(){ return; }
+    //回调函数，信息由Entry传递到
+    public String getMessage(String ask){ return null;}
+
+    public String getInfo(){return null;}
 
 
 //get/set函数

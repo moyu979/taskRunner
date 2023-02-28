@@ -11,9 +11,6 @@ public class FileAndXml {
      * @return
      */
     public static File makeFile(File f, String... path) {
-        if(f==null){
-            ;
-        }
         File father=f;
         if(!father.exists()){
             newfile(father);
