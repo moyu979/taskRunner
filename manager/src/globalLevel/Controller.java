@@ -1,14 +1,12 @@
 package globalLevel;
 
 import Entry.Entry;
-import MechineLevel.Machine;
+import MachineLevel.Machine;
 import tools.Bat;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import static java.lang.Thread.sleep;
 
 public class Controller{
     Entry caller;//回调，传递信息用
@@ -18,6 +16,7 @@ public class Controller{
     Machines machines;
     Apps apps;
     Calendar nextRun;
+
     public Controller(Entry caller){
         this.caller=caller;
         this.userFile=caller.getUserFile();
@@ -27,6 +26,9 @@ public class Controller{
         this.machines=new Machines(this.userFile.listFiles());
 
         File jarFile=new File(softFile,"appPackages");
+        if(!jarFile.exists()){
+            jarFile.mkdir();
+        }
         this.apps=new Apps(jarFile.listFiles());
     }
 
@@ -53,11 +55,10 @@ public class Controller{
         int num=Integer.parseInt(ans);
         String name=caller.getMessage("please name it");
 
-        Machine machine=new Machine(name,signs.get(num));
-        machines.addMachine(machine);
+        machines.addMachine(name,signs.get(num));
     }
 
-    public void deleteMachine(){
+    public void deleteMachine(String sign){
         ;
     }
     public String getInfo(){

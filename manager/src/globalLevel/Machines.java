@@ -1,15 +1,13 @@
 package globalLevel;
 
-import java.io.File;
-import MechineLevel.Machine;
-import exceptions.NoMachineException;
+import MachineLevel.Machine;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Machines {
     Map<Machine,Thread> machines;
-
     public Machines(File[] machineFiles){
         System.out.println("dd");
         machines=new HashMap<>();
@@ -32,6 +30,22 @@ public class Machines {
     public void addMachine(Machine machine){
         Thread thread=new Thread(machine);
         machines.put(machine,thread);
+    }
+    public void addMachine(String name,String port){
+        File file=new File("./users/"+name);
+        file.mkdir();
+        File setFile=new File(file,"settings.txt");
+        try {
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(setFile));
+            bufferedWriter.write("name:"+name+"\n");
+            bufferedWriter.write("port:"+port+"\n");
+            bufferedWriter.close();
+            addMachine(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
     public Machine findMachine(String sign){
         for(Machine machine:machines.keySet()){

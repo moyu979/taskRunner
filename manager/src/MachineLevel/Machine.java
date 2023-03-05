@@ -1,19 +1,21 @@
-package MechineLevel;
+package MachineLevel;
 
 import java.io.*;
 import java.util.Calendar;
-import java.util.Scanner;
 
 public class Machine implements Runnable{
     String name;
     String port;
+
     File file;
+    File settingFile;
+
     Calendar nextExecTime;
-    
+
     int xPixels,yPixels;
     public Machine(File machineDir){
         file=machineDir;
-        File settingFile=new File(machineDir,"settings.txt");
+        settingFile=new File(machineDir,"settings.txt");
 
         try {
             FileReader fileReader=new FileReader(settingFile);
@@ -37,23 +39,27 @@ public class Machine implements Runnable{
     public Machine(String name, String port){
         this.name=name;
         this.port=port;
+        this.writeBack();
     }
+
+    private void writeBack() {
+
+    }
+
+
     @Override
     public void run() {
         System.out.println("run");
     }
-
     public String getInfo(){
         return "name:"+name+"\nport:"+port+"\n";
     }
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getPort() {
         return port;
     }

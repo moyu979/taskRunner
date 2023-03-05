@@ -1,9 +1,14 @@
 package Entry;
 
+import globalLevel.Controller;
+
 import java.io.*;
 
 public class Help extends Entry {
 
+    public Help(File userFile, File softFile, Controller controller){
+        super(userFile,softFile,controller);
+    }
     public Help(File userFile, File softFile) {
         super(userFile, softFile);
     }

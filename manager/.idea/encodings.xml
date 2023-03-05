@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/resources/help" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Entry/Cmd.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Entry/Entry.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Entry/GUI.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Entry/Help.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/MachineLevel/Machine.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/exceptions/NoAppException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/exceptions/NoMachineException.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/globalLevel/Apps.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/globalLevel/Controller.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/globalLevel/Machines.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/globalLevel/Paras.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/tools/Bat.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/tools/FileAndXml.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/tools/Opencv.java" charset="UTF-8" />
+  </component>
+</project>

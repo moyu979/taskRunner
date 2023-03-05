@@ -5,11 +5,11 @@ import java.io.File;
 public class Main {
     static Entry entry=null;
     public static void main(String[] args) {
-        //ÊµãËØïÈò∂ÊÆµÂúàÂÆöÂèÇÊï∞
+        //≤‚ ‘Ω◊∂Œ»¶∂®≤Œ ˝
         File userFile=new File("./users");
-        File softFile=new File("./resources");
+        File softFile=new File("./softSetting");
         args=new String[]{"cmd"};
-        //ÂèÇÊï∞Ëß£Êûê
+        //≤Œ ˝Ω‚Œˆ
         if(args.length==0){
             entry=new Cmd(userFile,softFile);
         }else{
@@ -19,7 +19,7 @@ public class Main {
                 default ->entry=new Cmd(userFile,softFile);
             }
         }
-        //‰∏çÊñ≠Ë∑ë
+        //≤ª∂œ≈‹
         do{
             entry=entry.run();
         }while (entry!=null);

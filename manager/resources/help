@@ -1,0 +1,10 @@
+这是一个用来定期操作安卓模拟器/真实手机的框架，如果开发请访问github查看源码
+命令行使用方法：
+    taskRunner [options]
+    options:
+        help    显示帮助手册
+        gui     以图形界面运行程序
+        cmd     以命令行模式运行程序
+
+    cmd模式：
+        gui     转换到图形模式

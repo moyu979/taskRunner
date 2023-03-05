@@ -8,11 +8,11 @@ import java.util.HashMap;
 
 public class Apps {
     HashMap<String, Class> runApps;
-    public boolean AddApp(){return true;}
-    public boolean stopApp(){return true;}
+
     Apps(File[] jars){
         runApps=new HashMap<>();
         for(File f:jars){
+            System.out.println(f);
             try {
                 URL url=new URL("file:"+f.getPath());
                 URLClassLoader urlClassLoader=new URLClassLoader(new URL[]{url});
@@ -26,6 +26,8 @@ public class Apps {
         }
     }
 
+    public boolean AddApp(){return true;}
+    public boolean stopApp(){return true;}
     public Class findApp(String name){
         Class app=runApps.get(name);
         if(app==null){

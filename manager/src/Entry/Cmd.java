@@ -1,10 +1,15 @@
 package Entry;
 
+import globalLevel.Controller;
+
 import java.io.File;
 import java.util.Scanner;
 
 public class Cmd extends Entry {
 
+    public Cmd(File userFile, File softFile, Controller controller){
+        super(userFile,softFile,controller);
+    }
     public Cmd(File userFile, File softFile){
         super(userFile,softFile);
     }
@@ -16,10 +21,9 @@ public class Cmd extends Entry {
             String cmd=scanner.next();
             switch (cmd){
                 case "e"-> {
-                    quit();
                     return null;
                 }case "newMechine" ->{
-                    newMechine();
+                    newMachine();
                 }case "newApp" -> {
                     newApp();
                 }case "run"-> {
@@ -30,12 +34,15 @@ public class Cmd extends Entry {
                     getInfo();
                 }
                 case "gui" ->{
-                    return new GUI(userFile,softFile);
+                    return new GUI(userFile,softFile,this.controller);
                 }
             }
         }while(true);
     }
-
+    //newMachine
+    private void newMachine() {
+        controller.addMachine();
+    }
     @Override
     public String getMessage(String ask) {
         System.out.println(ask);
@@ -51,11 +58,6 @@ public class Cmd extends Entry {
     private void newApp() {
     }
 
-    private void newMechine() {
-        controller.addMachine();
-    }
 
-    private void quit() {
-        controller.quit();
-    }
+
 }

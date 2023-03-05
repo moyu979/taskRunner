@@ -9,6 +9,17 @@ public class Entry {
     File softFile;
 
     Controller controller;
+    public Entry(File userFile, File softFile,Controller controller){
+        this.userFile=userFile;
+        this.softFile=softFile;
+        if(!this.userFile.exists()){
+            this.userFile.mkdir();
+        }
+        if(!this.softFile.exists()){
+            this.softFile.mkdir();
+        }
+        controller=controller;
+    }
     public Entry(File userFile, File softFile){
         this.userFile=userFile;
         this.softFile=softFile;
