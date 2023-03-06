@@ -2,11 +2,16 @@ package AppLevel;
 
 import MachineLevel.Machine;
 
-public class App {
+import java.util.Calendar;
+
+public abstract class App {
     public App(Machine m){
         ;
     }
-    public void run() {
+    public void loadSetting(){
         ;
+    }
+    public Calendar run(){
+        return null;
     }
 }

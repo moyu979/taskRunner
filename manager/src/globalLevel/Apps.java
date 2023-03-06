@@ -1,5 +1,8 @@
 package globalLevel;
 
+import MachineLevel.Machine;
+import Vars.globalVars;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,50 +10,49 @@ import java.net.URLClassLoader;
 import java.util.HashMap;
 
 public class Apps {
-    HashMap<String, Class> runApps;
+    public HashMap<String, Class> runApps;
+    Apps(File jar){
+        File[] jars=jar.listFiles();
 
-    Apps(File[] jars){
         runApps=new HashMap<>();
+
         for(File f:jars){
-            System.out.println(f);
-            try {
-                URL url=new URL("file:"+f.getPath());
-                URLClassLoader urlClassLoader=new URLClassLoader(new URL[]{url});
-                Class myClass=(Class)urlClassLoader.loadClass("AppLevel.runner");
-                runApps.put(f.getName().replace(".jar",""),myClass);
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            addApp(f);
         }
     }
 
-    public boolean AddApp(){return true;}
-    public boolean stopApp(){return true;}
-    public Class findApp(String name){
-        Class app=runApps.get(name);
-        if(app==null){
-            System.out.println("not exist app");
+    public void addApp(File jar){
+        try {
+            URL url=new URL("file:"+jar.getPath());
+            URLClassLoader urlClassLoader=new URLClassLoader(new URL[]{url});
+            Class myClass=(Class)urlClassLoader.loadClass("AppLevel.runner");
+            runApps.put(jar.getName().replace(".jar",""),myClass);
+            if(globalVars.machines!=null){
+                globalVars.machines.addApp(myClass);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-        return app;
+
     }
-    public void addAnApp(String name,Class app){
-        ;
+
+
+    public HashMap<String, Class> getRunApps() {
+        return runApps;
     }
-    public String toString(){
-        String toReturn="";
-        for(String name: runApps.keySet()){
-            toReturn=toReturn+name;
-        }
-        return toReturn;
+
+    public void setRunApps(HashMap<String, Class> runApps) {
+        this.runApps = runApps;
     }
-    public String getInfo(){
+
+     public String getInfo(){
         String s="";
         for(String name:runApps.keySet()){
             s=s+name+"\n";
-
         }
+        s+="\n";
         return s;
-    }
+     }
 }

@@ -6,15 +6,18 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Cmd extends Entry {
-
-    public Cmd(File userFile, File softFile, Controller controller){
-        super(userFile,softFile,controller);
-    }
+    //初始化函数
     public Cmd(File userFile, File softFile){
         super(userFile,softFile);
     }
+    //二次生成函数
+    public Cmd(File userFile, File softFile, Controller controller){
+        super(userFile,softFile,controller);
+    }
+
     @Override
     public Entry run() {
+        super.run();
         System.out.println("cmd model(e to exit)");
         Scanner scanner=new Scanner(System.in);
         do{
@@ -22,13 +25,13 @@ public class Cmd extends Entry {
             switch (cmd){
                 case "e"-> {
                     return null;
-                }case "newMechine" ->{
-                    newMachine();
-                }case "newApp" -> {
-                    newApp();
                 }case "run"-> {
-                    controller.run();
-                    System.out.println("started");
+                    runController();
+                }
+                case "newMachine" ->{
+                    newMachine(cmd);
+                }case "newApp" -> {
+                    newApp(cmd);
                 }
                 case "getInfo"-> {
                     getInfo();
@@ -39,10 +42,27 @@ public class Cmd extends Entry {
             }
         }while(true);
     }
-    //newMachine
-    private void newMachine() {
-        controller.addMachine();
+
+
+
+
+    private void runController() {
+        if(controller.isRunning()){
+            System.out.println("controller already run");
+        }else{
+            controller.run();
+            System.out.println("controller start to run");
+        }
     }
+    private void newMachine(String cmd) {
+        String[] cmds=cmd.split(" ");
+        controller.addMachine(cmds);
+    }
+    private void newApp(String cmd) {
+        String[] cmds=cmd.split(" ");
+        controller.addApp(cmds);
+    }
+
     @Override
     public String getMessage(String ask) {
         System.out.println(ask);
@@ -50,14 +70,12 @@ public class Cmd extends Entry {
         String answer=scanner.next();
         return answer;
     }
-    public String getInfo(){
+
+    @Override
+    public void getInfo() {
         String s=controller.getInfo();
         System.out.println(s);
-        return s;
     }
-    private void newApp() {
-    }
-
 
 
 }

@@ -5,21 +5,23 @@ import java.io.File;
 public class Main {
     static Entry entry=null;
     public static void main(String[] args) {
-        //≤‚ ‘Ω◊∂Œ»¶∂®≤Œ ˝
+        //ÊµãËØïÈò∂ÊÆµÂúàÂÆöÂèÇÊï∞
         File userFile=new File("./users");
         File softFile=new File("./softSetting");
-        args=new String[]{"cmd"};
-        //≤Œ ˝Ω‚Œˆ
-        if(args.length==0){
-            entry=new Cmd(userFile,softFile);
-        }else{
+        args=new String[]{"help"};
+        //ÂèÇÊï∞Ëß£Êûê
+        if(args.length==0){entry=new Cmd(userFile,softFile);}
+        else{
             switch (args[0]){
+                //‰ª•helpÂΩ¢ÂºèËøêË°å
                 case "help"->entry=new Help(userFile,softFile);
+                //‰ª•GuiÂΩ¢ÂºèËøêË°å
                 case "GUI" ->entry=new GUI(userFile,softFile);
+                //ÈªòËÆ§ÊòØcmdÂΩ¢Âºè
                 default ->entry=new Cmd(userFile,softFile);
             }
         }
-        //≤ª∂œ≈‹
+        //‰∏çÊñ≠Ë∑ë
         do{
             entry=entry.run();
         }while (entry!=null);
