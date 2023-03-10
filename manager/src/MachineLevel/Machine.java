@@ -88,7 +88,7 @@ public class Machine implements Runnable{
     }
 
     private void checkSets() {
-        String cmd="adb shell wm size";
+        String cmd="adb -s "+port+" shell wm size";
         Process p= null;
         int y,x;
         try {
@@ -100,7 +100,7 @@ public class Machine implements Runnable{
             String s= null;
             s = bufferedReader.readLine();
             if(s==null){
-                System.out.println("machine named "+this.name+"no found");
+                System.out.println("machine named "+this.name+" no found");
                 return;
             }
             s=s.replace("Physical size: ","");

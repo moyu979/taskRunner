@@ -20,7 +20,7 @@ public class Apps {
         runApps=new HashMap<>();
 
         App app=new head();
-        runApps.put(app.getClass().getName(),app.getClass());
+        runApps.put(app.getClass().getSimpleName(),app.getClass());
 
         for(File f:jars){
             addApp(f);

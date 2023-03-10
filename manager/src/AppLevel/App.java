@@ -19,5 +19,7 @@ public abstract class App {
     }
 
     public void newSetFile(File gameset) {
+        ;
     }
+    public void getInfo(){;}
 }
