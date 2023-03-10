@@ -5,6 +5,7 @@ import Vars.globalVars;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -122,13 +123,25 @@ public class Machine implements Runnable{
 
     @Override
     public void run() {
+        ArrayList<Calendar> runtime=new ArrayList<>();
+        nextExecTime=null;
         for(String name: runApps.keySet()){
             Calendar appRunTime=runApps.get(name).run();
-            if(nextExecTime==null || nextExecTime.after(appRunTime)){
-                nextExecTime=appRunTime;
-                System.out.println("v");
-            }
+            runtime.add(appRunTime);
         }
+        if(runtime.size()==0){
+            ;
+        }else{
+            Calendar n=runtime.get(0);
+            for(Calendar c:runtime){
+                if(n.after(c)){
+                    n=c;
+                }
+            }
+            nextExecTime=n;
+
+        }
+
     }
 
     public void addApp(Class myclass){
@@ -136,6 +149,10 @@ public class Machine implements Runnable{
         try {
             a = (App)myclass.getDeclaredConstructor(Machine.class).newInstance(this);
             runApps.put(myclass.getName(), a);
+            //如果加入的app是第一个，那么nextExecTime会在一次试运行后被置null，需要添加app后唤醒。
+            if(nextExecTime==null){
+                nextExecTime=Calendar.getInstance();
+            }
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -152,11 +169,9 @@ public class Machine implements Runnable{
         System.out.println("a");
         if(nextExecTime==null){
             return false;
-        }else if(nextExecTime.before(Calendar.getInstance())){
+        }else if(nextExecTime.before(Calendar.getInstance()) && allRun){
             System.out.println("true");
-            nextExecTime=null;
             return true;
-
         }else {
             return false;
         }

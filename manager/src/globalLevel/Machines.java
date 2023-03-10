@@ -74,7 +74,7 @@ public class Machines implements Runnable {
                 ;
             }else{
                 machines.forEach((k, v) -> {
-                    if (k.ableRun() && !v.isAlive()) {
+                    if (!v.isAlive() && k.ableRun()) {
                         Thread t=new Thread(k);
                         machines.put(k,t);
                         t.start();
