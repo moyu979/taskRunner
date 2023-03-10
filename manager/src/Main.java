@@ -8,7 +8,7 @@ public class Main {
         //测试阶段圈定参数
         File userFile=new File("./users");
         File softFile=new File("./softSetting");
-        args=new String[]{"help"};
+        args=new String[]{"cmd"};
         //参数解析
         if(args.length==0){entry=new Cmd(userFile,softFile);}
         else{

@@ -1,5 +1,6 @@
 package Entry;
 
+import Vars.globalVars;
 import globalLevel.Controller;
 
 import java.io.File;
@@ -10,9 +11,6 @@ public class Help extends Entry{
     public Help(File userFile, File softFile) {
         super(userFile, softFile);
     }
-    public Help(File userFile, File softFile, Controller controller){
-        super(userFile,softFile,controller);
-    }
     //运行函数
     @Override
     public Entry run() {
@@ -20,6 +18,12 @@ public class Help extends Entry{
         System.out.println(help);
         return null;
     }
+
+    @Override
+    public void showInfo(String message) {
+
+    }
+
     @Override
     public String getMessage(String ask) {
         return null;

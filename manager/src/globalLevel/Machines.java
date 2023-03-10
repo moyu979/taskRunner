@@ -18,6 +18,7 @@ public class Machines implements Runnable {
     HashMap<String,Machine> machineNames;
     boolean allowRun=true;
     public Machines(File userFile){
+        System.out.println("init "+this.getClass().getName());
         File[] machineFiles=userFile.listFiles();
         machines=new HashMap<>();
         machineNames=new HashMap<>();
@@ -67,18 +68,21 @@ public class Machines implements Runnable {
     }
 
     public void run(){
+        System.out.println("run "+this.getClass().getName());
         while (allowRun) {
             if (machines.size() == 0) {
-                System.out.println("no Machines");
+                ;
             }else{
                 machines.forEach((k, v) -> {
                     if (k.ableRun() && !v.isAlive()) {
-                        v.start();
+                        Thread t=new Thread(k);
+                        machines.put(k,t);
+                        t.start();
                     }
                 });
             }
             try {
-                sleep(1000 * 5);
+                sleep(1000 * 1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

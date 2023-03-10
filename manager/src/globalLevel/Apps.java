@@ -1,5 +1,7 @@
 package globalLevel;
 
+import AppLevel.App;
+import AppLevel.head;
 import MachineLevel.Machine;
 import Vars.globalVars;
 
@@ -12,9 +14,13 @@ import java.util.HashMap;
 public class Apps {
     public HashMap<String, Class> runApps;
     Apps(File jar){
+        System.out.println("init "+this.getClass().getName());
         File[] jars=jar.listFiles();
 
         runApps=new HashMap<>();
+
+        App app=new head();
+        runApps.put(app.getClass().getName(),app.getClass());
 
         for(File f:jars){
             addApp(f);

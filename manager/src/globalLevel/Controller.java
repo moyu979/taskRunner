@@ -19,6 +19,7 @@ public class Controller{
 
 
     public Controller(Entry caller){
+        System.out.println("init "+this.getClass().getName());
         setCaller(caller);
 
         setSoftFile(caller.getSoftFile());
@@ -33,7 +34,8 @@ public class Controller{
     }
 
     public void run(){
-        machineThread.run();
+        System.out.println("run "+this.getClass().getName());
+        machineThread.start();
     }
 
     public boolean isRunning(){
@@ -41,6 +43,7 @@ public class Controller{
     }
 
     public void addMachine(String[] cmds) {
+        System.out.println("111");
         if(cmds.length==1){
             String result=runCmd("devices");
             String[] results=result.split("\n");
@@ -106,7 +109,9 @@ public class Controller{
         toReturn=toReturn+globalVars.apps.getInfo();
         return toReturn;
     }
-
+    public void showInfo(String message){
+        caller.showInfo(message);
+    }
 
 
 

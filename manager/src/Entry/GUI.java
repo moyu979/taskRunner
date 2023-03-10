@@ -8,13 +8,16 @@ public class GUI extends Entry{
     public GUI(File userFile, File softFile){
         super(userFile,softFile);
     }
-    public GUI(File userFile, File softFile, Controller controller){
-        super(userFile,softFile,controller);
-    }
+
 
     @Override
     public Entry run() {
         return null;
+    }
+
+    @Override
+    public void showInfo(String message) {
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Entry;
 
+import Vars.globalVars;
 import globalLevel.Controller;
 
 import java.io.File;
@@ -10,14 +11,12 @@ public class Cmd extends Entry {
     public Cmd(File userFile, File softFile){
         super(userFile,softFile);
     }
-    //二次生成函数
-    public Cmd(File userFile, File softFile, Controller controller){
-        super(userFile,softFile,controller);
-    }
+
 
     @Override
     public Entry run() {
         super.run();
+
         System.out.println("cmd model(e to exit)");
         Scanner scanner=new Scanner(System.in);
         do{
@@ -37,7 +36,7 @@ public class Cmd extends Entry {
                     getInfo();
                 }
                 case "gui" ->{
-                    return new GUI(userFile,softFile,this.controller);
+                    return new GUI(userFile,softFile);
                 }
             }
         }while(true);
@@ -47,20 +46,20 @@ public class Cmd extends Entry {
 
 
     private void runController() {
-        if(controller.isRunning()){
+        if(globalVars.controller.isRunning()){
             System.out.println("controller already run");
         }else{
-            controller.run();
+            globalVars.controller.run();
             System.out.println("controller start to run");
         }
     }
     private void newMachine(String cmd) {
         String[] cmds=cmd.split(" ");
-        controller.addMachine(cmds);
+        globalVars.controller.addMachine(cmds);
     }
     private void newApp(String cmd) {
         String[] cmds=cmd.split(" ");
-        controller.addApp(cmds);
+        globalVars.controller.addApp(cmds);
     }
 
     @Override
@@ -72,8 +71,12 @@ public class Cmd extends Entry {
     }
 
     @Override
+    public void showInfo(String message) {
+        System.out.println(message);
+    }
+    @Override
     public void getInfo() {
-        String s=controller.getInfo();
+        String s=globalVars.controller.getInfo();
         System.out.println(s);
     }
 

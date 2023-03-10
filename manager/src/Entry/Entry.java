@@ -1,24 +1,20 @@
 package Entry;
 
 import globalLevel.Controller;
-
+import Vars.globalVars;
 import java.io.File;
 
 public abstract class Entry {
     File userFile;
     File softFile;
-    Controller controller;
     //初始运行的构造函数(控制器自动生成)
     public Entry(File userFile,File softFile){
+        System.out.println("init "+this.getClass().getName());
         setUserFile(userFile);
         setSoftFile(softFile);
-        controller=new Controller(this);
-    }
-    //切换控制界面的构造函数(控制器继承自上一个)
-    public Entry(File userFile, File softFile,Controller controller){
-        setUserFile(userFile);
-        setSoftFile(softFile);
-        controller=controller;
+        if(globalVars.controller==null){
+            globalVars.controller=new Controller(this);
+        }
     }
     //用于控制器和界面交互的回调函数,需要手动实现
     abstract public String getMessage(String ask);
@@ -26,10 +22,11 @@ public abstract class Entry {
     abstract public void getInfo();
     //运行函数
     public Entry run(){
-        controller.run();
+        System.out.println("run "+this.getClass().getName());
+        globalVars.controller.run();
         return null;
     }
-
+     abstract public void showInfo(String message);
 
 
 
@@ -62,11 +59,11 @@ public abstract class Entry {
     }
 
     public Controller getController() {
-        return controller;
+        return globalVars.controller;
     }
 
     public void setController(Controller controller) {
-        this.controller = controller;
+        globalVars.controller = controller;
     }
 
 }
