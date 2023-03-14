@@ -1,11 +1,8 @@
 package Entry;
 
-import Vars.globalVars;
-import globalLevel.Controller;
-
 import java.io.File;
 
-import static Tools.txts.readTxt;
+import static Repack.txts.readTxt;
 
 public class Help extends Entry{
     public Help(File userFile, File softFile) {

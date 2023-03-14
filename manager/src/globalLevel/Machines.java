@@ -1,15 +1,10 @@
 package globalLevel;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import MachineLevel.Machine;
 
-import static Tools.txts.writeTxt;
+import static Repack.txts.writeTxt;
 import static java.lang.Thread.sleep;
 
 //machine单独一个线程，定时执行

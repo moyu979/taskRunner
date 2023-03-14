@@ -34,7 +34,7 @@ public class Machine implements Runnable{
         for(String s:runApps.keySet()){
             File gameset=new File(apps,s+".txt");
             if(gameset.exists()){
-                runApps.get(s).loadSetting(gameset);
+                runApps.get(s).loadSetting();
             }else{
                 try {
                     gameset.createNewFile();
@@ -139,7 +139,6 @@ public class Machine implements Runnable{
                 }
             }
             nextExecTime=n;
-
         }
 
     }
@@ -180,11 +179,68 @@ public class Machine implements Runnable{
     public String getInfo(){
         return "name:"+name+"\nport:"+port+"\n";
     }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public Calendar getNextExecTime() {
+        return nextExecTime;
+    }
+
+    public void setNextExecTime(Calendar nextExecTime) {
+        this.nextExecTime = nextExecTime;
+    }
+
+    public boolean isAllRun() {
+        return allRun;
+    }
+
+    public void setAllRun(boolean allRun) {
+        this.allRun = allRun;
+    }
+
+    public int getxPixels() {
+        return xPixels;
+    }
+
+    public void setxPixels(int xPixels) {
+        this.xPixels = xPixels;
+    }
+
+    public int getyPixels() {
+        return yPixels;
+    }
+
+    public void setyPixels(int yPixels) {
+        this.yPixels = yPixels;
+    }
+
+    public HashMap<String, App> getRunApps() {
+        return runApps;
+    }
+
+    public void setRunApps(HashMap<String, App> runApps) {
+        this.runApps = runApps;
     }
 }
